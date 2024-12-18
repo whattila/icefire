@@ -1,0 +1,94 @@
+﻿<Page
+    x:Class="icefire.Views.BookView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:icefire.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:vm="using:icefire.ViewModels"
+    xmlns:c="using:Template10.Controls">
+
+    <Page.DataContext>
+        <vm:BookViewModel x:Name="ViewModel" />
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- TODO Binding -->
+        <c:PageHeader FontSize="30" FontWeight="Bold" Content="{Binding Book.Name}" Grid.Row="0" />
+
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top"  Grid.Row="1" Grid.Column="0" Orientation="Horizontal" RenderTransformOrigin="0.483,0.498" Margin="20">
+            <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Isbn:</TextBlock>
+            <TextBlock Text="{Binding Book.Isbn}" FontSize="20" Margin="0"/>
+        </StackPanel>
+
+        <!-- TODO ItemClick -->
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top"  Grid.Row="1" Grid.Column="1" Orientation="Vertical" Margin="20">
+            <TextBlock FontSize="20" Margin="0,0,0,10" FontWeight="Bold">Authors</TextBlock>
+            <ListView IsItemClickEnabled="False" ItemsSource="{Binding Book.Authors}" Height="273" Width="350" RenderTransformOrigin="0.504,0.524">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2" Orientation="Horizontal" Margin="20">
+            <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Number of Pages:</TextBlock>
+            <TextBlock Text="{Binding Book.NumberOfPages}" FontSize="20" Margin="0"/>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center"  Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Margin="20">
+            <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Publisher:</TextBlock>
+            <TextBlock Text="{Binding Book.Publisher}" FontSize="20" Margin="0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="20">
+            <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Country:</TextBlock>
+            <TextBlock Text="{Binding Book.Country}" FontSize="20" Margin="0"/>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center"  Grid.Row="2" Grid.Column="2" Orientation="Horizontal" Margin="20">
+            <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Media type:</TextBlock>
+            <TextBlock Text="{Binding Book.MediaType}" FontSize="20" Margin="0"/>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="0" Orientation="Horizontal" Margin="20">
+            <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Release date:</TextBlock>
+            <TextBlock Text="{Binding Book.Released}" FontSize="20" Margin="0"/>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="1" Orientation="Vertical" Margin="20">
+            <TextBlock FontSize="20" Margin="0,0,0,10" FontWeight="Bold">Characters in the book</TextBlock>
+            <ListView IsItemClickEnabled="True" ItemClick="CharacterItem_OnItemClick" ItemsSource="{Binding Characters}" Height="273" Width="350" RenderTransformOrigin="0.504,0.524">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="2" Orientation="Vertical" Margin="20">
+            <TextBlock FontSize="20" Margin="0,0,0,10" FontWeight="Bold">Characters with a POV-chapter</TextBlock>
+            <ListView IsItemClickEnabled="True" ItemClick="CharacterItem_OnItemClick" ItemsSource="{Binding Povs}" Height="273" Width="350" RenderTransformOrigin="0.504,0.524">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+
+        <!-- TODO ItemSource Binding -->
+
+    </Grid>
+</Page>
+

@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="icefire.Views.HousesList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:icefire.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:vm="using:icefire.ViewModels"
+    xmlns:c="using:Template10.Controls">
+
+    <Page.DataContext>
+        <vm:HousesListViewModel x:Name="ViewModel" />
+    </Page.DataContext>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <c:PageHeader Content="List of houses" Grid.Row="0" />
+
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top"  Grid.Row="1" FontSize="40" Margin="20">Houses in the world of Ice and Fire</TextBlock>
+
+        <ListView ItemClick="Houses_ItemClick" Grid.Row="2" IsItemClickEnabled="True" ItemsSource="{Binding PageOfHouses}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="273" Width="350" RenderTransformOrigin="0.504,0.524">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Typography.Capitals="SmallCaps"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Orientation="Horizontal" Margin="40">
+            <Button Command="{Binding FirstPageCommand}" Click="First_OnItemClick" Background="Blue" Foreground="White" Content="First" Margin="0,0,10,0" Height="53" Width="100" FontSize="18"/>
+            <Button Command="{Binding PreviousPageCommand}" Click="Previous_OnItemClick" Background="Blue" Foreground="White" Content="Previous" Margin="10,0,10,0" Height="53" Width="100" FontSize="18"/>
+            <Button Command="{Binding NextPageCommand}" Click="Next_OnItemClick" Background="Blue" Foreground="White" Content="Next" Margin="10,0,10,0" Height="53" Width="100" FontSize="18"/>
+            <Button Command="{Binding LastPageCommand}" Click="Last_OnItemClick" Background="Blue" Foreground="White" Content="Last" Margin="10,0,0,0" Height="53" Width="100" FontSize="18"/>
+        </StackPanel>
+
+    </Grid>
+</Page>

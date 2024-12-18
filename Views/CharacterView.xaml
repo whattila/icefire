@@ -1,0 +1,129 @@
+﻿<Page
+    x:Class="icefire.Views.CharacterView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:icefire.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:vm="using:icefire.ViewModels"
+    xmlns:c="using:Template10.Controls">
+
+    <Page.DataContext>
+        <vm:CharacterViewModel x:Name="ViewModel" />
+    </Page.DataContext>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical">
+            <c:PageHeader FontSize="30" FontWeight="Bold" Content="{Binding Character.Name}" />
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" RenderTransformOrigin="0.483,0.498" Margin="20">
+                <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Gender:</TextBlock>
+                <TextBlock Text="{Binding Character.Gender}"  FontSize="20" Margin="0"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" RenderTransformOrigin="0.483,0.498" Margin="20">
+                <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Culture:</TextBlock>
+                <TextBlock Text="{Binding Character.Culture}"  FontSize="20" Margin="0"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" RenderTransformOrigin="0.483,0.498" Margin="20">
+                <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Born:</TextBlock>
+                <TextBlock Text="{Binding Character.Born}"  FontSize="20" Margin="0"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" RenderTransformOrigin="0.483,0.498" Margin="20">
+                <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Died:</TextBlock>
+                <TextBlock Text="{Binding Character.Died}"  FontSize="20" Margin="0"/>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="20">
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,10" FontWeight="Bold">Titles</TextBlock>
+                <ListView IsItemClickEnabled="False" ItemsSource="{Binding Character.Titles}" Height="273" Width="350" RenderTransformOrigin="0.504,0.524">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="20">
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,10" FontWeight="Bold">Aliases</TextBlock>
+                <ListView IsItemClickEnabled="False" ItemsSource="{Binding Character.Aliases}" Height="273" Width="350" RenderTransformOrigin="0.504,0.524">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" RenderTransformOrigin="0.483,0.498" Margin="20">
+                <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Father:</TextBlock>
+                <Button Click="Father_Click" Background="White" Content="{Binding Father.Name}" Height="40" Width="250"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" RenderTransformOrigin="0.483,0.498" Margin="20">
+                <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Mother:</TextBlock>
+                <Button Click="Mother_Click" Background="White" Content="{Binding Mother.Name}" Height="40" Width="250"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" RenderTransformOrigin="0.483,0.498" Margin="20">
+                <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Spouse:</TextBlock>
+                <Button Click="Spouse_Click" Background="White" Content="{Binding Spouse.Name}" Height="40" Width="250"/>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="20">
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,10" FontWeight="Bold">Allegiances</TextBlock>
+                <ListView ItemClick="Allegiance_ItemClick" IsItemClickEnabled="True" ItemsSource="{Binding Allegiances}" Height="273" Width="350" RenderTransformOrigin="0.504,0.524">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="20">
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,10" FontWeight="Bold">Books</TextBlock>
+                <ListView ItemClick="Book_ItemClick" IsItemClickEnabled="True" ItemsSource="{Binding Books}" Height="273" Width="350" RenderTransformOrigin="0.504,0.524">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="20">
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,10" FontWeight="Bold">Books with a POV-chapter</TextBlock>
+                <ListView ItemClick="Book_ItemClick" IsItemClickEnabled="True" ItemsSource="{Binding Povs}" Height="273" Width="350" RenderTransformOrigin="0.504,0.524">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="20">
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,10" FontWeight="Bold">TV Series</TextBlock>
+                <ListView IsItemClickEnabled="False" ItemsSource="{Binding Character.TvSeries}" Height="273" Width="350" RenderTransformOrigin="0.504,0.524">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="20">
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,10" FontWeight="Bold">Played By</TextBlock>
+                <ListView IsItemClickEnabled="False" ItemsSource="{Binding Character.PlayedBy}" Height="273" Width="350" RenderTransformOrigin="0.504,0.524">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

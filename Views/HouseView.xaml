@@ -1,0 +1,115 @@
+﻿<Page
+    x:Class="icefire.Views.HouseView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:icefire.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:vm="using:icefire.ViewModels"
+    xmlns:c="using:Template10.Controls">
+
+    <Page.DataContext>
+        <vm:HouseViewModel x:Name="ViewModel" />
+    </Page.DataContext>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical">
+            <c:PageHeader FontSize="30" FontWeight="Bold" Content="{Binding House.Name}" />
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" RenderTransformOrigin="0.483,0.498" Margin="20">
+                <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Region:</TextBlock>
+                <TextBlock Text="{Binding House.Region}"  FontSize="20" Margin="0"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" RenderTransformOrigin="0.483,0.498" Margin="20">
+                <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Coat of Arms:</TextBlock>
+                <TextBlock Text="{Binding House.CoatOfArms}"  FontSize="20" Margin="0"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" RenderTransformOrigin="0.483,0.498" Margin="20">
+                <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Words:</TextBlock>
+                <TextBlock Text="{Binding House.Words}"  FontSize="20" Margin="0"/>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="20">
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,10" FontWeight="Bold">Titles</TextBlock>
+                <ListView IsItemClickEnabled="False" ItemsSource="{Binding House.Titles}" Height="273" Width="350" RenderTransformOrigin="0.504,0.524">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="20">
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,10" FontWeight="Bold">Seats</TextBlock>
+                <ListView IsItemClickEnabled="False" ItemsSource="{Binding House.Seats}" Height="273" Width="350" RenderTransformOrigin="0.504,0.524">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" RenderTransformOrigin="0.483,0.498" Margin="20">
+                <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Current Lord:</TextBlock>
+                <Button Click="Currentlord_Click" Background="White" Content="{Binding CurrentLord.Name}" Height="40" Width="250"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" RenderTransformOrigin="0.483,0.498" Margin="20">
+                <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Heir:</TextBlock>
+                <Button Click="Heir_Click" Background="White" Content="{Binding Heir.Name}" Height="40" Width="250"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" RenderTransformOrigin="0.483,0.498" Margin="20">
+                <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Overlord:</TextBlock>
+                <Button Click="Overlord_Click" Background="White" Content="{Binding Overlord.Name}" Height="40" Width="250"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" RenderTransformOrigin="0.483,0.498" Margin="20">
+                <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Founded:</TextBlock>
+                <TextBlock Text="{Binding House.Founded}"  FontSize="20" Margin="0"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" RenderTransformOrigin="0.483,0.498" Margin="20">
+                <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Founder:</TextBlock>
+                <Button Click="Founder_Click" Background="White" Content="{Binding Founder.Name}" Height="40" Width="250"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" RenderTransformOrigin="0.483,0.498" Margin="20">
+                <TextBlock FontSize="20" Margin="0,0,10,0" FontWeight="Bold">Died out:</TextBlock>
+                <TextBlock Text="{Binding House.DiedOut}"  FontSize="20" Margin="0"/>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="20">
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,10" FontWeight="Bold">Ancestral weapons</TextBlock>
+                <ListView IsItemClickEnabled="False" ItemsSource="{Binding House.AncestralWeapons}" Height="273" Width="350" RenderTransformOrigin="0.504,0.524">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="20">
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,10" FontWeight="Bold">Cadet branches</TextBlock>
+                <ListView ItemClick="Cadet_ItemClick" IsItemClickEnabled="True" ItemsSource="{Binding CadetBranches}" Height="273" Width="350" RenderTransformOrigin="0.504,0.524">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="20">
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,10" FontWeight="Bold">Sworn Members</TextBlock>
+                <ListView ItemClick="Member_ItemClick" IsItemClickEnabled="True" ItemsSource="{Binding SwornMembers}" Height="273" Width="350" RenderTransformOrigin="0.504,0.524">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>
